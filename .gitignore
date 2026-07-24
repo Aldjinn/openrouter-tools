@@ -28,3 +28,9 @@ Thumbs.db
 # Temp
 *.tmp
 *.log
+
+# Server
+Caddyfile
+docker-compose.yml
+update.sh
+
