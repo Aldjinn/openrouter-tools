@@ -1,0 +1,29 @@
+# Build artifacts
+output/
+prices.html
+prices.md
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+.eggs/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# uv
+.uv/
+
+# Docker
+Dockerfile
