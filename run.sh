@@ -21,13 +21,27 @@ docker build -t "$IMAGE_NAME" "$SCRIPT_DIR"
 echo "Running container (scraping rankings and generating reports)..."
 docker run --rm -v "${OUTPUT_DIR}:/app/output" "$IMAGE_NAME"
 
-echo "Copying output files to current directory..."
-cp -f "$OUTPUT_DIR/prices.html" ./prices.html
-cp -f "$OUTPUT_DIR/prices.md" ./prices.md
+# Only copy output files if they exist and are non-empty
+updated=false
 
-echo "Cleaning up output directory..."
+if [ -f "$OUTPUT_DIR/prices.html" ] && [ -s "$OUTPUT_DIR/prices.html" ]; then
+    cp -f "$OUTPUT_DIR/prices.html" ./prices.html
+    updated=true
+fi
+
+if [ -f "$OUTPUT_DIR/prices.md" ] && [ -s "$OUTPUT_DIR/prices.md" ]; then
+    cp -f "$OUTPUT_DIR/prices.md" ./prices.md
+    updated=true
+fi
+
+# Cleanup output dir
 rm -rf "$OUTPUT_DIR"
 
-echo "Done. Files written:"
-echo "  ./prices.html"
-echo "  ./prices.md"
+if [ "$updated" = true ]; then
+    echo "Done. Files written:"
+    echo "  ./prices.html"
+    echo "  ./prices.md"
+else
+    echo "No output files generated. Check logs above for errors."
+    exit 1
+fi

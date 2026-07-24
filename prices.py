@@ -120,6 +120,12 @@ async def main():
 
     print(f"2. Found {len(items)} top models.\n")
 
+    if len(items) == 0:
+        print("ERROR: No models found. The page structure may have changed.")
+        print(f"  {RANKINGS_URL}")
+        print("Output files were NOT overwritten. Check the logs above.")
+        raise SystemExit(1)
+
     print("3. Fetching pricing data from OpenRouter API...\n")
     api_models = fetch_openrouter_prices()
     pricing_lookup = build_pricing_lookup(api_models)
@@ -176,7 +182,8 @@ async def main():
         print("or the page structure has changed. Please check manually at:")
         print(f"  {RANKINGS_URL}")
         print(f"  https://openrouter.ai/api/v1/models")
-        # Still generate output, but mark as anomalous
+        print("\nOutput files were NOT overwritten. Check the logs above.")
+        raise SystemExit(1)
     elif matched_count < len(rows) // 3:
         print(f"\nWARNING: Only {matched_count} of {len(rows)} models have pricing data.")
         print("The OpenRouter API may have changed. Verify at:")
