@@ -268,6 +268,7 @@ def generate_html(rows):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OpenRouter Programming Models — Value for Money</title>
+<link rel="icon" href="money.png" type="image/png">
 <style>
   body {{
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;

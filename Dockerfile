@@ -15,8 +15,9 @@ WORKDIR /app
 RUN uv pip install --system requests playwright tzdata \
     && python -m playwright install --with-deps chromium
 
-# Create output directory
+# Create output directory and copy assets
 RUN mkdir -p /app/output
+COPY money.png /app/output/money.png
 
 # Set default output directory
 ENV OUTPUT_DIR=/app/output/
