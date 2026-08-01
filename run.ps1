@@ -48,6 +48,10 @@ if (Test-Path (Join-Path $OutputDir "prices.md")) {
     }
 }
 
+if (Test-Path (Join-Path $OutputDir "money.png")) {
+    Copy-Item -Path (Join-Path $OutputDir "money.png") -Destination ./money.png -Force
+}
+
 # Cleanup output dir
 Remove-Item -Path $OutputDir -Recurse -Force -ErrorAction SilentlyContinue
 

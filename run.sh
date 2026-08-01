@@ -34,6 +34,10 @@ if [ -f "$OUTPUT_DIR/prices.md" ] && [ -s "$OUTPUT_DIR/prices.md" ]; then
     updated=true
 fi
 
+if [ -f "$OUTPUT_DIR/money.png" ]; then
+    cp -f "$OUTPUT_DIR/money.png" ./money.png
+fi
+
 # Cleanup output dir
 rm -rf "$OUTPUT_DIR"
 
