@@ -98,6 +98,8 @@ A dark-themed HTML table with:
 ```
 openrouter-tools/
 ├── prices.py          # Main script (Python, ~280 lines)
+├── requirements.txt   # Dependency mirror for Dependabot
+├── .github/           # Dependabot config (dependabot.yml)
 ├── Dockerfile         # Docker container (Python 3.14, Playwright)
 ├── run.ps1            # PowerShell helper: build → run → copy output
 ├── .dockerignore      # Docker build context exclusions
@@ -115,7 +117,7 @@ openrouter-tools/
 - **playwright** — for scraping the rankings page
 - **tzdata** — for timezone support (used for timestamps in output)
 
-These are declared in the PEP 723 script metadata at the top of `prices.py` and are installed automatically by `uv run`.
+These are declared in the PEP 723 script metadata at the top of `prices.py` and are installed automatically by `uv run`. They are mirrored in `requirements.txt` so [Dependabot](https://docs.github.com/en/code-security/dependabot) can track updates (its `pip` ecosystem does not read PEP 723 metadata).
 
 ## Docker details
 

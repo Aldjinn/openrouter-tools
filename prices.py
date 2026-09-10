@@ -247,6 +247,7 @@ def generate_markdown(rows):
 def generate_html(rows):
     """Write results as a styled HTML table."""
     cost_desc = f"{INPUT_TOKENS:,} input + {OUTPUT_TOKENS:,} output"
+    cost_short = f"{INPUT_TOKENS // 1_000}k in + {OUTPUT_TOKENS // 1_000}k out"
     ts = get_timestamp()
 
     html_rows = ""
@@ -325,7 +326,7 @@ def generate_html(rows):
         <th>Author</th>
         <th>Input / 1M</th>
         <th>Output / 1M</th>
-        <th>Cost per task</th>
+        <th>Cost per task ({cost_short})</th>
         <th>Orig Rank</th>
       </tr>
     </thead>
