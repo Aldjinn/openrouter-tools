@@ -1,0 +1,6 @@
+# Python dependencies for openrouter-tools.
+# Mirrors the PEP 723 metadata in prices.py so Dependabot can track updates.
+# Managed by Dependabot — keep in sync with the `dependencies` list in prices.py.
+requests>=2.34.2
+playwright>=1.62.0
+tzdata>=2026.3
