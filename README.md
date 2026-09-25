@@ -7,7 +7,7 @@ A Python tool that scrapes the [OpenRouter Rankings — Programming](https://ope
 1. **Scrapes** the top 10 models from the [OpenRouter Rankings — Programming](https://openrouter.ai/rankings#programming-languages) section using Playwright
 2. **Fetches** current pricing (per million tokens) from the OpenRouter API
 3. **Calculates** cost for a typical coding task (configurable: default 2,000 input + 4,000 output tokens)
-4. **Sorts** models by value-for-money (free models first, then by cost-adjusted rank)
+4. **Sorts** models by cost per task ascending (free models first, followed by lowest cost, N/A at the end)
 5. **Outputs** results as:
    - Console table
    - Markdown file (`prices.md`)
@@ -118,6 +118,12 @@ openrouter-tools/
 - **tzdata** — for timezone support (used for timestamps in output)
 
 These are declared in the PEP 723 script metadata at the top of `prices.py` and are installed automatically by `uv run`. They are mirrored in `requirements.txt` so [Dependabot](https://docs.github.com/en/code-security/dependabot) can track updates (its `pip` ecosystem does not read PEP 723 metadata).
+
+To update the version constraints in `requirements.txt` to the latest releases on PyPI:
+
+```bash
+uvx pur -r requirements.txt
+```
 
 ## Docker details
 

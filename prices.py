@@ -164,6 +164,7 @@ async def main():
 
         rows.append({
             "value": value,
+            "cost_value": cost if matched else float("inf"),
             "name": item["name"],
             "author": item["author"],
             "input": prompt_str,
@@ -172,7 +173,8 @@ async def main():
             "rank": i,
         })
 
-    rows.sort(key=lambda r: r["value"], reverse=True)
+    # Sort by Cost per task ASC (Free / 0 cost first, followed by increasing cost, N/A at the end)
+    rows.sort(key=lambda r: (r["cost_value"], r["rank"]))
 
     # --- Guardrail: warn if pricing coverage is too low ---
     matched_count = sum(1 for r in rows if r["cost"] not in ("N/A", "Free"))
@@ -225,7 +227,7 @@ def generate_markdown(rows):
         f"*Generated: {ts}*\n",
         f"*Data scraped from the [OpenRouter Rankings — Programming](https://openrouter.ai/rankings#programming-languages) section. "
         f"Cost calculated for {INPUT_TOKENS:,} input + {OUTPUT_TOKENS:,} output tokens per task.*\n",
-        "## Rankings (sorted by value)\n",
+        "## Rankings (sorted by cost)\n",
     ]
 
     lines.append("| # | Model | Author | Input / 1M | Output / 1M | Cost per task | Orig Rank |")
